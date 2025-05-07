@@ -7,6 +7,12 @@ android {
     namespace = "com.example.aulakt"
     compileSdk = 34
 
+    buildFeatures{
+        viewBinding = true
+    }
+
+
+
     defaultConfig {
         applicationId = "com.example.aulakt"
         minSdk = 24
