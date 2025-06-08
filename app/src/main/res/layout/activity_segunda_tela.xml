@@ -1,20 +1,20 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#FFF5EE"
-    android:padding="16dp">
+    tools:context=".Segunda_Tela">
 
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="174dp"
+        android:layout_gravity="center_horizontal"
         android:src="@drawable/brain"
-        android:layout_gravity="center_horizontal"/>
-
-
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="42dp" />
 
 
     <TextView
@@ -22,41 +22,48 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="40dp"
         android:fontFamily="sans-serif"
         android:padding="25dp"
         android:text="LOGIN"
         android:textColor="#0B2E4B"
         android:textSize="32sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="127dp"
+        tools:layout_editor_absoluteY="237dp" />
 
     <EditText
         android:id="@+id/caixaTextoEmail"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:background="#FFFF"
         android:hint="Digite seu e-mail"
         android:inputType="textEmailAddress"
-        android:layout_marginBottom="40dp"
-        android:padding="12dp" />
+        android:padding="12dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="362dp" />
 
     <EditText
         android:id="@+id/caixaTextoSenha"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:background="#FFFF"
         android:hint="Digite a senha"
         android:inputType="textPassword"
-        android:layout_marginBottom="40dp"
-        android:padding="12dp" />
+        android:padding="12dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="432dp" />
 
     <Button
         android:id="@+id/botao"
         android:layout_width="127dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:backgroundTint="#6495ED"
         android:padding="20dp"
         android:text="Enviar"
         android:textSize="18sp"
-        android:backgroundTint="#6495ED"/>
+        tools:layout_editor_absoluteX="142dp"
+        tools:layout_editor_absoluteY="556dp" />
 
-</LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

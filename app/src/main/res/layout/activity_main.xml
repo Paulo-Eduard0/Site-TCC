@@ -9,31 +9,7 @@
     android:background="#FFF5EE">
 
 
-     <com.google.android.material.tabs.TabLayout
-         android:id="@+id/tabLayout"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         app:tabTextColor="@color/white"
-         android:backgroundTint="#6495ED"
-         tools:ignore="MissingConstraints">
 
-         <com.google.android.material.tabs.TabItem
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:text="Primeira página" />
-
-          <com.google.android.material.tabs.TabItem
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:text="Segunda página" />
-
-          <com.google.android.material.tabs.TabItem
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:text="Terceira página"/>
-
-
-     </com.google.android.material.tabs.TabLayout>
 
 
     <androidx.fragment.app.FragmentContainerView
@@ -43,41 +19,51 @@
         />
 
 
-
-     <TextView
-         android:layout_width="match_parent"
-         android:layout_height="match_parent"
-         android:gravity="center"
-         android:text="BRAINBOOST"
-         android:textColor="@color/black"
-         android:textSize="50dp"
-         tools:layout_editor_absoluteX="0dp"
-         tools:layout_editor_absoluteY="0dp" />
-
-     <ImageView
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:src="@drawable/brain"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:text="BRAINBOOST"
+        android:textColor="@color/black"
+        android:textSize="40dp"
+        android:layout_marginTop="230dp" />
 
 
-     <Button
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:layout_margin="100dp"
-         android:backgroundTint="#6495ED"
-         android:text="LOGIN"
-         tools:layout_editor_absoluteX="88dp"
-         tools:layout_editor_absoluteY="434dp"
-         />
+    <ImageView
+        android:layout_width="298dp"
+        android:layout_height="195dp"
+        android:src="@drawable/brain"
+        tools:layout_editor_absoluteX="56dp"
+        tools:layout_editor_absoluteY="0dp" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="100dp"
         android:backgroundTint="#6495ED"
-        android:text="CADASTRO"
+        android:text="PROFESSOR"
         tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="509dp" />
+        tools:layout_editor_absoluteY="422dp"
+        />
+
+    <Button android:id="@+id/TerceiraTela"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="100dp"
+        android:backgroundTint="#6495ED"
+        android:text="DIRETOR"
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="341dp"
+       />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="100dp"
+        android:backgroundTint="#6495ED"
+        android:text="ALUNO"
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="501dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
