@@ -52,15 +52,7 @@ export default function MinhasRedações() {
             <Text style={styles.buttonText}>Ranking</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.button}>
-        
-            <Text style={styles.buttonText}>Podcasts</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.button}>
-        
-            <Text style={styles.buttonText}>Jornais</Text>
-          </TouchableOpacity>
+          
           
 
         </View>

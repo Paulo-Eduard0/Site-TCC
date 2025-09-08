@@ -35,7 +35,7 @@ export default function Home() {
                     </TouchableOpacity>
                 </Link>
 
-                <Link href="../minhasRedações" asChild>
+                <Link href="../minhasR" asChild>
                     <TouchableOpacity style={styles.Botoes}>
                         <Text style={styles.botaoText}>teste</Text>
                     </TouchableOpacity>
