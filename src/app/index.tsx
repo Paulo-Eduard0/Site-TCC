@@ -17,11 +17,6 @@ export default function Home() {
                 <Image source={LogoApp} style={styles.imagemlogo} />
                 <Text style={styles.title}>BRAINBOOST</Text>
 
-                <Link href="../loginG" asChild>        
-                    <TouchableOpacity style={styles.Botoes}>
-                        <Text style={styles.botaoText}>Gestão</Text>
-                    </TouchableOpacity>
-                </Link>
 
                 <Link href="../loginP" asChild>
                     <TouchableOpacity style={styles.Botoes}>
@@ -35,12 +30,20 @@ export default function Home() {
                     </TouchableOpacity>
                 </Link>
 
-                <Link href="../minhasR" asChild>
+                <Link href="../homeA" asChild>
                     <TouchableOpacity style={styles.Botoes}>
                         <Text style={styles.botaoText}>teste</Text>
                     </TouchableOpacity>
                 </Link>
+
+                <Link href="../homeP" asChild>
+                    <TouchableOpacity style={styles.Botoes}>
+                        <Text style={styles.botaoText}>teste 2</Text>
+                    </TouchableOpacity>
+                </Link>
             </View>
+
+
 
             
 

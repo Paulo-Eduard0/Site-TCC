@@ -1,10 +1,10 @@
 import { View, Text, SafeAreaView, StyleSheet, Dimensions, TextInput, TouchableOpacity, Image } from 'react-native';
 import { Link, router } from "expo-router";
-import { DrawerToggleButton} from "@react-navigation/drawer"
+import { DrawerToggleButton } from "@react-navigation/drawer"
 
 const profile = require('../img/profile.png');
 
-export default function Repertório() {
+export default function Ranking() {
   
   
 
@@ -18,7 +18,7 @@ export default function Repertório() {
 
         <View style={styles.drawerToggleContainer}>
                   <DrawerToggleButton tintColor='#6495ED'/>
-                </View>
+        </View>
         
         {/* Container da seta no canto superior esquerdo */}
         <TouchableOpacity style={styles.profileContainer} >
@@ -31,39 +31,34 @@ export default function Repertório() {
         </View>
 
         <View>
-          <Text style={styles.brain}>Repertórios</Text>
+          <Text style={styles.brain}>Seu Ranking</Text>
         </View>
 
           <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>Filmes</Text>
+            <Text style={styles.buttonText}>1º User1</Text>
           </TouchableOpacity>
 
          
           <TouchableOpacity style={styles.button}>
         
-            <Text style={styles.buttonText}>Livros</Text>
+            <Text style={styles.buttonText}>2º User2</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.button}>
         
-            <Text style={styles.buttonText}>Citações</Text>
+            <Text style={styles.buttonText}>3º User3</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.button}>
         
-            <Text style={styles.buttonText}>Músicas</Text>
+            <Text style={styles.buttonText}>4º User4</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.button}>
         
-            <Text style={styles.buttonText}>Podcasts</Text>
+            <Text style={styles.buttonText}>4º User5</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.button}>
-        
-            <Text style={styles.buttonText}>Jornais</Text>
-          </TouchableOpacity>
-          
 
         </View>
 
@@ -138,7 +133,7 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 8,
     justifyContent: 'center',
-    right: 75,
+    alignItems: 'center',
     marginTop: 30,
     width: 200,
     top: 30,
@@ -147,8 +142,6 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 18,
     fontWeight: 'bold',
-    textAlign: "left",
-    marginLeft: 20,
   },
 
   brain:{

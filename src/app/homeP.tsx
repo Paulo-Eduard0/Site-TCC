@@ -1,102 +1,61 @@
 import { View, Text, SafeAreaView, StyleSheet, Dimensions, TextInput, TouchableOpacity, Image } from 'react-native';
 import { Link, router } from "expo-router";
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { Feather } from '@expo/vector-icons';
+import { TabRouter } from '@react-navigation/native';
+import { DrawerToggleButton } from "@react-navigation/drawer"
 
-const seta = require('../img/seta.png');
+const profile = require('../img/profile.png');
 
-export default function CadastroGestao() {
-  
-  // Função para voltar à tela anterior
+const Drawer = createDrawerNavigator();
+
+export default function HomeProfessor() {
+
   const handleGoBack = () => {
     if (router.canGoBack()) {
       router.back();
     } else {
-      router.replace('/'); // Volta para a tela inicial se não houver histórico
+      router.replace('../minhasR'); 
     }
+  };
+
+
+  const handleProfilePress = () => {
+    router.push('../minhasR');
   };
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      {/* Background azul na parte superior */}
+     
       <View style={styles.background} />
       
-      {/* Container principal */}
+    
       <View style={styles.container}>
+  
+        <View style={styles.drawerToggleContainer}>
+          <DrawerToggleButton tintColor='#6495ED'/>
+        </View>
         
-        {/* Container da seta no canto superior esquerdo */}
-        <TouchableOpacity style={styles.setaContainer} onPress={handleGoBack}>
-          <Image source={seta} style={styles.setaImage} />
+        {/* TouchableOpacity com onPress para navegar */}
+        <TouchableOpacity 
+          style={styles.profileContainer}
+          onPress={handleProfilePress} // Adicione esta linha
+        >
+          <Image source={profile} style={styles.setaImage} />
         </TouchableOpacity>
 
         {/* Título "Login Aluno" */}
-        <View style={styles.cadastroA}>
-          <Text style={styles.text}>Cadastro Gestão</Text>
+        <View style={styles.login}>
+          <Text style={styles.text}>Aluno</Text>
         </View>
 
         <View>
           <Text style={styles.brain}>BrainBoost</Text>
         </View>
-
-        {/* Formulário de login */}
-        <View style={styles.formContainer}>
-          <Text style={styles.label}>Email</Text>
-          
-          <TextInput
-            style={styles.input}
-            placeholder="Digite seu email"
-            placeholderTextColor="#999"
-            keyboardType="email-address"
-            autoCapitalize="none"
-          />
-
-          <Text style={styles.label}>Senha</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Digite sua senha"
-            placeholderTextColor="#999"
-            secureTextEntry={true}
-          />
-
-          <Text style={styles.label}>Digite a senha novamente</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Digite sua senha"
-            placeholderTextColor="#999"
-            secureTextEntry={true}
-          />
-
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>Entrar</Text>
-          </TouchableOpacity>
-
-          {/* Separador "OU" */}
-          <View>
-            <Text style={styles.ou}>OU</Text>
-          </View>
-
-          {/* Botão do Google */}
-          <TouchableOpacity style={styles.botaoG}>
-        
-            <Text style={styles.buttonGoogle}>Google</Text>
-          </TouchableOpacity>
-        </View>
-
-        {/* Link de cadastro */}
-        
-        <Link href='../loginG' asChild>
-          <TouchableOpacity >
-             <View>
-                <Text style={styles.cadastro}>Já tenho login</Text>
-              </View>
-          </TouchableOpacity>  
-        </Link>
-        
-        
-
       </View>
     </SafeAreaView>
   );
 }
-
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -120,20 +79,29 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 20,
   },
-  // NOVO: Container para a seta no canto superior direito
-  setaContainer: {
+  
+  drawerToggleContainer: {
     position: 'absolute',
-    top: 10,
-    left: 30,
+    top: 7,
+    left: 18,
     marginTop: 40,
-    zIndex: 1, // Garante que a seta fique acima de outros elementos
+    zIndex: 1,
+    transform: [{ scale: 1.5 }],
   },
-  // NOVO: Estilo para a imagem da seta
+  
+  profileContainer: {
+    position: 'absolute',
+    top: 7,
+    right: 30,
+    marginTop: 40,
+    zIndex: 1,
+  },
+  
   setaImage: {
-    width: 30,
-    height: 30,
+    width: 40,
+    height: 40,
   },
-  cadastroA: {
+  login: {
     width: windowWidth * 0.5,
     maxWidth: 500,
     aspectRatio: 3.5,
@@ -195,14 +163,12 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
     color: '#000428',
   },
-
   buttonGoogle: {
     color: '#000428',
     fontSize: 18,
     fontWeight: 'bold',
     backgroundColor: 'tranparent',
   },
-
   botaoG:{
      backgroundColor: 'transparent',
     height: 50,
@@ -213,7 +179,6 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#000428',
   },
-
   brain:{
     padding: 0,
     fontSize: 40,

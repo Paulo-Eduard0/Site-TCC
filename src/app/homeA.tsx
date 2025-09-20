@@ -1,21 +1,46 @@
 import { View, Text, SafeAreaView, StyleSheet, Dimensions, TextInput, TouchableOpacity, Image } from 'react-native';
 import { Link, router } from "expo-router";
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { Feather } from '@expo/vector-icons';
+import { TabRouter } from '@react-navigation/native';
+import { DrawerToggleButton } from "@react-navigation/drawer"
 
 const profile = require('../img/profile.png');
 
+const Drawer = createDrawerNavigator();
+
 export default function HomeAluno() {
-  
+
+  const handleGoBack = () => {
+    if (router.canGoBack()) {
+      router.back();
+    } else {
+      router.replace('../minhasR'); 
+    }
+  };
+
+
+  const handleProfilePress = () => {
+    router.push('../minhasR');
+  };
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      {/* Background azul na parte superior */}
+     
       <View style={styles.background} />
       
-      {/* Container principal */}
+    
       <View style={styles.container}>
+  
+        <View style={styles.drawerToggleContainer}>
+          <DrawerToggleButton tintColor='#6495ED'/>
+        </View>
         
-        {/* Container da seta no canto superior esquerdo */}
-        <TouchableOpacity style={styles.profileContainer}>
+        {/* TouchableOpacity com onPress para navegar */}
+        <TouchableOpacity 
+          style={styles.profileContainer}
+          onPress={handleProfilePress} // Adicione esta linha
+        >
           <Image source={profile} style={styles.setaImage} />
         </TouchableOpacity>
 
@@ -27,12 +52,10 @@ export default function HomeAluno() {
         <View>
           <Text style={styles.brain}>BrainBoost</Text>
         </View>
-
       </View>
     </SafeAreaView>
   );
 }
-
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -56,15 +79,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 20,
   },
-  // Container para a seta no canto superior direito
+  
+  drawerToggleContainer: {
+    position: 'absolute',
+    top: 7,
+    left: 18,
+    marginTop: 40,
+    zIndex: 1,
+    transform: [{ scale: 1.5 }],
+  },
+  
   profileContainer: {
     position: 'absolute',
     top: 7,
     right: 30,
     marginTop: 40,
-    zIndex: 1, // Garante que a seta fique acima de outros elementos
+    zIndex: 1,
   },
-  //Estilo para a imagem da seta
+  
   setaImage: {
     width: 40,
     height: 40,
@@ -131,14 +163,12 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
     color: '#000428',
   },
-
   buttonGoogle: {
     color: '#000428',
     fontSize: 18,
     fontWeight: 'bold',
     backgroundColor: 'tranparent',
   },
-
   botaoG:{
      backgroundColor: 'transparent',
     height: 50,
@@ -149,7 +179,6 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#000428',
   },
-
   brain:{
     padding: 0,
     fontSize: 40,

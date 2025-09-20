@@ -1,17 +1,24 @@
 import { View, Text, SafeAreaView, StyleSheet, Dimensions, TextInput, TouchableOpacity, Image } from 'react-native';
 import { Link, router } from "expo-router";
+import { useState } from 'react';
 
 const seta = require('../img/seta.png');
+const olhoAberto = require('../img/olho-aberto.png'); 
+const olhoFechado = require('../img/olho-fechado.png');
 
 export default function LoginProfessor() {
-  
-  // Função para voltar à tela anterior
+  const [mostrarSenha, setMostrarSenha] = useState(false);
+
   const handleGoBack = () => {
     if (router.canGoBack()) {
       router.back();
     } else {
-      router.replace('/'); // Volta para a tela inicial se não houver histórico
+      router.replace('/'); 
     }
+  };
+
+  const toggleMostrarSenha = () => {
+    setMostrarSenha(!mostrarSenha);
   };
 
   return (
@@ -27,7 +34,7 @@ export default function LoginProfessor() {
           <Image source={seta} style={styles.setaImage} />
         </TouchableOpacity>
 
-        {/* Título "Login Aluno" */}
+        {/* Título "Login Professor" */}
         <View style={styles.login}>
           <Text style={styles.text}>Login Professor</Text>
         </View>
@@ -49,12 +56,23 @@ export default function LoginProfessor() {
           />
 
           <Text style={styles.label}>Senha</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Digite sua senha"
-            placeholderTextColor="#999"
-            secureTextEntry={true}
-          />
+          <View style={styles.senhaContainer}>
+            <TextInput
+              style={styles.inputSenha}
+              placeholder="Digite sua senha"
+              placeholderTextColor="#999"
+              secureTextEntry={!mostrarSenha}
+            />
+            <TouchableOpacity 
+              style={styles.olhoButton} 
+              onPress={toggleMostrarSenha}
+            >
+              <Image 
+                source={mostrarSenha ? olhoAberto : olhoFechado} 
+                style={styles.olhoImage} 
+              />
+            </TouchableOpacity>
+          </View>
 
           <TouchableOpacity style={styles.button}>
             <Text style={styles.buttonText}>Entrar</Text>
@@ -67,26 +85,23 @@ export default function LoginProfessor() {
 
           {/* Botão do Google */}
           <TouchableOpacity style={styles.botaoG}>
-        
             <Text style={styles.buttonGoogle}>Google</Text>
           </TouchableOpacity>
-        </View>
 
-        {/* Link de cadastro */}
-        
-        <Link href='../cadastroP' asChild>
-          <TouchableOpacity >
-            <View>
-              <Text style={styles.cadastro}>Não tenho conta</Text>
-            </View>
-          </TouchableOpacity>  
-        </Link>  
+          {/* Link de cadastro */}
+          <Link href='../cadastroP' asChild>
+            <TouchableOpacity>
+              <View>
+                <Text style={styles.cadastro}>Não tenho conta</Text>
+              </View>
+            </TouchableOpacity>  
+          </Link>  
+        </View>
 
       </View>
     </SafeAreaView>
   );
 }
-
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -110,15 +125,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 20,
   },
-  // NOVO: Container para a seta no canto superior direito
   setaContainer: {
     position: 'absolute',
     top: 10,
     left: 30,
     marginTop: 40,
-    zIndex: 1, // Garante que a seta fique acima de outros elementos
+    zIndex: 1,
   },
-  // NOVO: Estilo para a imagem da seta
   setaImage: {
     width: 30,
     height: 30,
@@ -161,6 +174,37 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ddd',
   },
+ 
+  senhaContainer: {
+    position: 'relative',
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 15,
+  },
+ 
+  inputSenha: {
+    backgroundColor: 'white',
+    width: '100%',
+    height: 50,
+    borderRadius: 8,
+    paddingHorizontal: 15,
+    paddingRight: 50,
+    fontSize: 16,
+    borderWidth: 1,
+    borderColor: '#ddd',
+  },
+  // Botão do olho
+  olhoButton: {
+    position: 'absolute',
+    right: 15,
+    padding: 10,
+  },
+  // Imagem do olho
+  olhoImage: {
+    width: 24,
+    height: 24,
+    tintColor: '#999',
+  },
   button: {
     backgroundColor: '#000428',
     height: 50,
@@ -178,23 +222,21 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginTop: 30,
     textAlign: 'center',
-   
   },
   cadastro: {
     marginTop: 20,
     textDecorationLine: 'underline',
     color: '#000428',
+    textAlign: 'center',
   },
-
   buttonGoogle: {
     color: '#000428',
     fontSize: 18,
     fontWeight: 'bold',
-    backgroundColor: 'tranparent',
+    backgroundColor: 'transparent',
   },
-
-  botaoG:{
-     backgroundColor: 'transparent',
+  botaoG: {
+    backgroundColor: 'transparent',
     height: 50,
     borderRadius: 8,
     justifyContent: 'center',
@@ -203,10 +245,9 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#000428',
   },
-
-  brain:{
+  brain: {
     padding: 0,
     fontSize: 40,
     fontWeight: 'bold',
-  }
+  },
 });
