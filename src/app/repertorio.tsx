@@ -6,26 +6,25 @@ const profile = require('../img/profile.png');
 
 export default function Repertório() {
   
-  
-
   return (
     <SafeAreaView style={styles.safeArea}>
-      {/* Background azul na parte superior */}
+      
       <View style={styles.background} />
       
-      {/* Container principal */}
       <View style={styles.container}>
 
         <View style={styles.drawerToggleContainer}>
-                  <DrawerToggleButton tintColor='#6495ED'/>
-                </View>
+          <DrawerToggleButton tintColor='#6495ED'/>
+        </View>
         
-        {/* Container da seta no canto superior esquerdo */}
-        <TouchableOpacity style={styles.profileContainer} >
-          <Image source={profile} style={styles.profileImage} />
-        </TouchableOpacity>
+        <Link href="../perfilA" asChild>
+          <TouchableOpacity style={styles.profileContainer} >
+            <View style={styles.profilePlaceholder}>
+              <Text style={styles.profileText}>👤</Text>
+            </View>
+          </TouchableOpacity>
+        </Link>
 
-        {/* Título "Login Aluno" */}
         <View style={styles.repertorio}>
           <Text style={styles.text}>Aluno</Text>
         </View>
@@ -34,47 +33,76 @@ export default function Repertório() {
           <Text style={styles.brain}>Repertórios</Text>
         </View>
 
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>Filmes</Text>
-          </TouchableOpacity>
+        
+        <View style={styles.buttonsContainer}>
+          <View style={styles.buttonRow}>
+
+           <Link href="../filmesS" asChild> 
+            <TouchableOpacity style={styles.button}>
+              <Text style={styles.buttonText}>Filmes/Séries</Text>
+            </TouchableOpacity>
+           </Link>
+
+          <Link href="../literaturaB" asChild>
+            <TouchableOpacity style={styles.button}>
+              <Text style={styles.buttonText}>Literatura</Text>
+            </TouchableOpacity>
+          </Link>
+          </View>
 
          
-          <TouchableOpacity style={styles.button}>
-        
-            <Text style={styles.buttonText}>Livros</Text>
-          </TouchableOpacity>
+          <View style={styles.buttonRow}>
+            
+           <Link href="../historia" asChild> 
+            <TouchableOpacity style={styles.button}>
+              <Text style={styles.buttonText}>História</Text>
+            </TouchableOpacity>
+         </Link>   
 
-          <TouchableOpacity style={styles.button}>
-        
-            <Text style={styles.buttonText}>Citações</Text>
-          </TouchableOpacity>
+          <Link href="../musicas" asChild>
+            <TouchableOpacity style={styles.button}>
+              <Text style={styles.buttonText}>Músicas</Text>
+            </TouchableOpacity>
+          </Link> 
+          </View>
 
-          <TouchableOpacity style={styles.button}>
-        
-            <Text style={styles.buttonText}>Músicas</Text>
-          </TouchableOpacity>
+          <View style={styles.buttonRow}>
+            <Link href="../podcasts" asChild>
+              <TouchableOpacity style={styles.button}>
+                <Text style={styles.buttonText}>Podcasts</Text>
+              </TouchableOpacity>
+            </Link>
 
-          <TouchableOpacity style={styles.button}>
-        
-            <Text style={styles.buttonText}>Podcasts</Text>
-          </TouchableOpacity>
+            <Link href="../jornais" asChild>
+              <TouchableOpacity style={styles.button}>
+                <Text style={styles.buttonText}>Jornais</Text>
+              </TouchableOpacity>
+            </Link> 
+          </View>
 
-          <TouchableOpacity style={styles.button}>
-        
-            <Text style={styles.buttonText}>Jornais</Text>
-          </TouchableOpacity>
           
+          <View style={styles.buttonRow}>
 
+           <Link href="/filosofia" asChild> 
+            <TouchableOpacity style={styles.button}>
+              <Text style={styles.buttonText}>Filosofia</Text>
+            </TouchableOpacity>
+           </Link> 
+ 
+           <Link href="/sociologia" asChild>
+            <TouchableOpacity style={styles.button}>
+              <Text style={styles.buttonText}>Sociologia</Text>
+            </TouchableOpacity>
+           </Link>
+
+
+          </View>  
         </View>
 
-        
-
-
-    
+      </View>
     </SafeAreaView>
   );
 }
-
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -107,9 +135,18 @@ const styles = StyleSheet.create({
     zIndex: 1, 
   },
   
-  profileImage: {
-    width: 30,
-    height: 30,
+  profilePlaceholder: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: '#6495ED',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  profileText: {
+    color: 'white',
+    fontSize: 20,
+    fontWeight: 'bold',
   },
   repertorio: {
     width: windowWidth * 0.5,
@@ -138,17 +175,15 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 8,
     justifyContent: 'center',
-    right: 75,
     marginTop: 30,
-    width: 200,
-    top: 30,
+    width: 150,
+    marginHorizontal: 10,
   },
   buttonText: {
     color: 'white',
     fontSize: 18,
     fontWeight: 'bold',
-    textAlign: "left",
-    marginLeft: 20,
+    textAlign: "center",
   },
 
   brain:{
@@ -164,5 +199,20 @@ const styles = StyleSheet.create({
     marginTop: 40,
     zIndex: 1,
     transform: [{ scale: 1.5 }],
+  },
+
+  buttonsContainer: {
+    width: '100%',
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  buttonRow: {
+    flexDirection: 'row',        
+    justifyContent: 'center',      
+    width: '100%',                 
+  },
+  emptyButton: {
+    width: 150,
+    marginHorizontal: 10,
   },
 });

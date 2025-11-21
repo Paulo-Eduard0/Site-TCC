@@ -1,75 +1,110 @@
-import { View, Text, SafeAreaView, StyleSheet, Dimensions, TextInput, TouchableOpacity, Image } from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet, Dimensions, TextInput, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { Link, router } from "expo-router";
 import { DrawerToggleButton } from "@react-navigation/drawer"
 
 const profile = require('../img/profile.png');
+const primeiro = require('../img/primeiro.png');
+const segundo = require('../img/segundo.png');
+const terceiro = require('../img/terceiro.png');
 
 export default function Ranking() {
   
-  
-
   return (
     <SafeAreaView style={styles.safeArea}>
-      {/* Background azul na parte superior */}
+      
       <View style={styles.background} />
       
-      {/* Container principal */}
       <View style={styles.container}>
 
         <View style={styles.drawerToggleContainer}>
-                  <DrawerToggleButton tintColor='#6495ED'/>
+          <DrawerToggleButton tintColor='#6495ED'/>
         </View>
         
-        {/* Container da seta no canto superior esquerdo */}
-        <TouchableOpacity style={styles.profileContainer} >
-          <Image source={profile} style={styles.profileImage} />
-        </TouchableOpacity>
+        <Link href="../perfilA" asChild>
+          <TouchableOpacity style={styles.profileContainer} >
+                <View style={styles.profilePlaceholder}>
+                  <Text style={styles.profileText}>👤</Text>
+               </View>
+          </TouchableOpacity>
+        </Link> 
 
-        {/* Título "Login Aluno" */}
         <View style={styles.repertorio}>
           <Text style={styles.text}>Aluno</Text>
         </View>
 
         <View>
-          <Text style={styles.brain}>Seu Ranking</Text>
+          <Text style={styles.brain}>Ranking</Text>
         </View>
 
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>1º User1</Text>
-          </TouchableOpacity>
+        {/* ScrollView para permitir rolagem */}
+        <ScrollView 
+          style={styles.scrollView}
+          contentContainerStyle={styles.scrollViewContent}
+          showsVerticalScrollIndicator={true}
+        >
 
-         
-          <TouchableOpacity style={styles.button}>
-        
-            <Text style={styles.buttonText}>2º User2</Text>
-          </TouchableOpacity>
+          {/* Container para as medalhas */}
+          <View style={styles.medalhasContainer}>
+            <View style={[styles.medalha, styles.segundoLugar]}>
+              <Image source={segundo} style={styles.segundo} />
+              <Text>User2</Text>
+            </View>
 
-          <TouchableOpacity style={styles.button}>
-        
-            <Text style={styles.buttonText}>3º User3</Text>
-          </TouchableOpacity>
+            <View style={[styles.medalha, styles.primeiroLugar]}>
+              <Image source={primeiro} style={styles.primeiro} />
+              <Text>User1</Text>
+            </View>
 
-          <TouchableOpacity style={styles.button}>
-        
-            <Text style={styles.buttonText}>4º User4</Text>
-          </TouchableOpacity>
+            <View style={[styles.medalha, styles.terceiroLugar]}>
+              <Image source={terceiro} style={styles.terceiro} />
+              <Text>User3</Text>
+            </View>
+          </View>
 
-          <TouchableOpacity style={styles.button}>
-        
-            <Text style={styles.buttonText}>4º User5</Text>
-          </TouchableOpacity>
+          {/* Cards para cada posição do ranking */}
+          <View style={styles.card}>
+            <Text style={styles.cardNumber}>4º</Text>
+            <Text style={styles.cardText}>User4</Text>
+          </View>
 
+          <View style={styles.card}>
+            <Text style={styles.cardNumber}>5º</Text>
+            <Text style={styles.cardText}>User5</Text>
+          </View>
 
-        </View>
+          <View style={styles.card}>
+            <Text style={styles.cardNumber}>6º</Text>
+            <Text style={styles.cardText}>User6</Text>
+          </View>
 
-        
+          <View style={styles.card}>
+            <Text style={styles.cardNumber}>7º</Text>
+            <Text style={styles.cardText}>User7</Text>
+          </View>
 
+          <View style={styles.card}>
+            <Text style={styles.cardNumber}>8º</Text>
+            <Text style={styles.cardText}>User8</Text>
+          </View>
 
-    
+          <View style={styles.card}>
+            <Text style={styles.cardNumber}>9º</Text>
+            <Text style={styles.cardText}>User9</Text>
+          </View>
+
+          <View style={styles.card}>
+            <Text style={styles.cardNumber}>10º</Text>
+            <Text style={styles.cardText}>User10</Text>
+          </View>
+
+          {/* Espaço extra no final para melhor rolagem */}
+          <View style={styles.bottomSpacing} />
+        </ScrollView>
+
+      </View>
     </SafeAreaView>
   );
 }
-
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -92,6 +127,16 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     paddingHorizontal: 20,
+  },
+  
+  // ScrollView styles
+  scrollView: {
+    width: '100%',
+    flex: 1,
+  },
+  
+  scrollViewContent: {
+    paddingBottom: 20, // Espaço no final do scroll
   },
   
   profileContainer: {
@@ -128,20 +173,32 @@ const styles = StyleSheet.create({
     marginTop: 90, 
   },
  
-  button: {
-    backgroundColor: '#000428',
-    height: 50,
+  // Estilos para os cards
+  card: {
+    backgroundColor: '#f8f9fa',
+    padding: 16,
     borderRadius: 8,
-    justifyContent: 'center',
+    marginBottom: 12,
+    width: '100%',
+    flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 30,
-    width: 200,
-    top: 30,
+    elevation: 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
   },
-  buttonText: {
-    color: 'white',
+  
+  cardNumber: {
     fontSize: 18,
     fontWeight: 'bold',
+    color: '#000428',
+    marginRight: 15,
+  },
+  
+  cardText: {
+    fontSize: 16,
+    color: '#333',
   },
 
   brain:{
@@ -157,5 +214,67 @@ const styles = StyleSheet.create({
     marginTop: 40,
     zIndex: 1,
     transform: [{ scale: 1.5 }],
+  },
+
+  
+  medalhasContainer: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    justifyContent: 'center',
+    marginTop: 20,
+    marginBottom: 30,
+    width: '100%',
+  },
+
+  medalha: {
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 100,
+    marginHorizontal: 10,
+  },
+
+  primeiroLugar: {
+    marginBottom: 30, 
+  },
+
+  segundoLugar: {
+    
+  },
+
+  terceiroLugar: {
+    
+  },
+
+  primeiro: {
+    
+  },
+
+  segundo: {
+    
+  },
+
+  terceiro: {
+    
+  },
+
+  profilePlaceholder: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: '#6495ED',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+
+  profileText: {
+    color: 'white',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+
+  bottomSpacing: {
+    height: 20, 
   },
 });

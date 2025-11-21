@@ -1,34 +1,37 @@
 import { View, Text, SafeAreaView, StyleSheet, Dimensions, TextInput, TouchableOpacity, Image } from 'react-native';
 import { Link, router } from "expo-router";
+import { useState } from 'react';
 
 const seta = require('../img/seta.png');
+const google = require('../img/google.png');
+const olhoAberto = require('../img/olho-aberto.png'); 
+const olhoFechado = require('../img/olho-fechado.png');
 
 export default function CadastroProfessor() {
-  
-  // Função para voltar à tela anterior
+  const [mostrarSenha, setMostrarSenha] = useState(false);
+
+  const toggleMostrarSenha = () => {
+    setMostrarSenha(!mostrarSenha);
+  };
+
   const handleGoBack = () => {
     if (router.canGoBack()) {
       router.back();
     } else {
-      router.replace('/'); // Volta para a tela inicial se não houver histórico
+      router.replace('/'); 
     }
   };
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      {/* Background azul na parte superior */}
       <View style={styles.background} />
       
-      {/* Container principal */}
       <View style={styles.container}>
-        
-        {/* Container da seta no canto superior esquerdo */}
         <TouchableOpacity style={styles.setaContainer} onPress={handleGoBack}>
           <Image source={seta} style={styles.setaImage} />
         </TouchableOpacity>
 
-        {/* Título "Login Aluno" */}
-        <View style={styles.cadastroP}>
+        <View style={styles.cadastroA}>
           <Text style={styles.text}>Cadastro Professor</Text>
         </View>
 
@@ -36,7 +39,6 @@ export default function CadastroProfessor() {
           <Text style={styles.brain}>BrainBoost</Text>
         </View>
 
-        {/* Formulário de login */}
         <View style={styles.formContainer}>
           <Text style={styles.label}>Email</Text>
           
@@ -47,14 +49,25 @@ export default function CadastroProfessor() {
             keyboardType="email-address"
             autoCapitalize="none"
           />
-
+          
           <Text style={styles.label}>Senha</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Digite sua senha"
-            placeholderTextColor="#999"
-            secureTextEntry={true}
-          />
+          <View style={styles.senhaContainer}>
+            <TextInput
+              style={styles.inputSenha}
+              placeholder="Digite sua senha"
+              placeholderTextColor="#999"
+              secureTextEntry={!mostrarSenha}
+            />
+            <TouchableOpacity 
+              style={styles.olhoButton} 
+              onPress={toggleMostrarSenha}
+            >
+              <Image 
+                source={mostrarSenha ? olhoAberto : olhoFechado} 
+                style={styles.olhoImage} 
+              />
+            </TouchableOpacity>
+          </View>
 
           <Text style={styles.label}>Digite a senha novamente</Text>
           <TextInput
@@ -68,19 +81,15 @@ export default function CadastroProfessor() {
             <Text style={styles.buttonText}>Entrar</Text>
           </TouchableOpacity>
 
-          {/* Separador "OU" */}
           <View>
             <Text style={styles.ou}>OU</Text>
           </View>
-
-          {/* Botão do Google */}
+          
           <TouchableOpacity style={styles.botaoG}>
-        
             <Text style={styles.buttonGoogle}>Google</Text>
+            <Image source={google} style={styles.google} />
           </TouchableOpacity>
         </View>
-
-        {/* Link de cadastro */}
         
         <Link href='../loginA' asChild>
           <TouchableOpacity >
@@ -89,13 +98,10 @@ export default function CadastroProfessor() {
               </View>
           </TouchableOpacity>  
         </Link>
-                
-
       </View>
     </SafeAreaView>
   );
 }
-
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -119,20 +125,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 20,
   },
-  // NOVO: Container para a seta no canto superior direito
   setaContainer: {
     position: 'absolute',
-    top: 15,
+    top: 18,
     left: 30,
     marginTop: 40,
-    zIndex: 1, // Garante que a seta fique acima de outros elementos
+    zIndex: 1,
   },
-  // NOVO: Estilo para a imagem da seta
   setaImage: {
     width: 30,
     height: 30,
   },
-  cadastroP: {
+  cadastroA: {
     width: windowWidth * 0.5,
     maxWidth: 500,
     aspectRatio: 3.5,
@@ -141,7 +145,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#000428',
     marginTop: 40,
     marginBottom: 30,
-    
   },
   text: {
     color: 'white',
@@ -171,6 +174,32 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ddd',
   },
+  senhaContainer: {
+    position: 'relative',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  inputSenha: {
+    backgroundColor: 'white',
+    width: '100%',
+    height: 50,
+    borderRadius: 8,
+    paddingHorizontal: 15,
+    paddingRight: 50,
+    fontSize: 16,
+    borderWidth: 1,
+    borderColor: '#ddd',
+  },
+  olhoButton: {
+    position: 'absolute',
+    right: 15,
+    padding: 10,
+  },
+  olhoImage: {
+    width: 24,
+    height: 24,
+    tintColor: '#999',
+  },
   button: {
     backgroundColor: '#000428',
     height: 50,
@@ -188,23 +217,21 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginTop: 30,
     textAlign: 'center',
-   
   },
   cadastro: {
     marginTop: 20,
     textDecorationLine: 'underline',
     color: '#000428',
   },
-
   buttonGoogle: {
     color: '#000428',
     fontSize: 18,
     fontWeight: 'bold',
-    backgroundColor: 'tranparent',
+    backgroundColor: 'transparent',
+    top: 15,
   },
-
-  botaoG:{
-     backgroundColor: 'transparent',
+  botaoG: {
+    backgroundColor: 'transparent',
     height: 50,
     borderRadius: 8,
     justifyContent: 'center',
@@ -213,10 +240,15 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#000428',
   },
-
-  brain:{
+  brain: {
     padding: 0,
     fontSize: 40,
     fontWeight: 'bold',
-  }
+  },
+  google: {
+    width: 30,
+    height: 30,
+    right: 60,
+    bottom: 12,
+  },
 });

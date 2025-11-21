@@ -5,38 +5,35 @@ import { useState } from 'react';
 const seta = require('../img/seta.png');
 const olhoAberto = require('../img/olho-aberto.png'); 
 const olhoFechado = require('../img/olho-fechado.png');
+const google = require('../img/google.png');
 
 export default function LoginAluno() {
   const [mostrarSenha, setMostrarSenha] = useState(false);
   
 
-  const handleGoBack = () => {
-    if (router.canGoBack()) {
-      router.back();
-    } else {
-      router.replace('/'); 
-    }
-  };
+ 
 
-  // Função para alternar entre mostrar/ocultar senha
+  
   const toggleMostrarSenha = () => {
     setMostrarSenha(!mostrarSenha);
   };
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      {/* Background azul na parte superior */}
+     
       <View style={styles.background} />
       
-      {/* Container principal */}
+      
       <View style={styles.container}>
         
-        {/* Container da seta no canto superior esquerdo */}
-        <TouchableOpacity style={styles.setaContainer} onPress={handleGoBack}>
-          <Image source={seta} style={styles.setaImage} />
-        </TouchableOpacity>
+       
+        <Link href="/" asChild>
+           <TouchableOpacity style={styles.setaContainer} >
+             <Image source={seta} style={styles.setaImage} />
+           </TouchableOpacity>
+        </Link>
 
-        {/* Título "Login Aluno" */}
+       
         <View style={styles.login}>
           <Text style={styles.text}>Login Aluno</Text>
         </View>
@@ -45,7 +42,7 @@ export default function LoginAluno() {
           <Text style={styles.brain}>BrainBoost</Text>
         </View>
 
-        {/* Formulário de login */}
+       
         <View style={styles.formContainer}>
           <Text style={styles.label}>Email</Text>
           
@@ -80,18 +77,19 @@ export default function LoginAluno() {
             <Text style={styles.buttonText}>Entrar</Text>
           </TouchableOpacity>
 
-          {/* Separador "OU" */}
+          
           <View>
             <Text style={styles.ou}>OU</Text>
           </View>
 
-          {/* Botão do Google */}
-          <TouchableOpacity style={styles.botaoG}>        
+          
+          <TouchableOpacity style={styles.botaoG}>         
             <Text style={styles.buttonGoogle}>Google</Text>
+            <Image source={google} style={styles.google} />
           </TouchableOpacity>
         </View>
 
-        {/* Link de cadastro */}
+      
         <Link href='../cadastroA' asChild>
           <TouchableOpacity >
             <View>
@@ -234,6 +232,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     backgroundColor: 'transparent',
+    top: 15,
   },
   botaoG: {
     backgroundColor: 'transparent',
@@ -250,4 +249,13 @@ const styles = StyleSheet.create({
     fontSize: 40,
     fontWeight: 'bold',
   },
+
+  google:{
+    width: 30,
+    height: 30,
+    right: 60,
+    bottom: 12,
+
+  },
+  
 });

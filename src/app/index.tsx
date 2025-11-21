@@ -10,12 +10,12 @@ export default function Home() {
     return (
         <SafeAreaView style={styles.safeArea}>
             <View style={styles.backgroundContainer}>
-                <Image source={Wave} style={styles.waveBackground} resizeMode="cover" />
+                <Image source={Wave} style={styles.ondaBackground} resizeMode="cover" />
             </View>
             
             <View style={styles.container}>
-                <Image source={LogoApp} style={styles.imagemlogo} />
-                <Text style={styles.title}>BRAINBOOST</Text>
+                <Image source={LogoApp} style={styles.nome} />
+                <Text style={styles.title}>BrainBoost</Text>
 
 
                 <Link href="../loginP" asChild>
@@ -32,15 +32,17 @@ export default function Home() {
 
                 <Link href="../homeA" asChild>
                     <TouchableOpacity style={styles.Botoes}>
-                        <Text style={styles.botaoText}>teste</Text>
+                        <Text style={styles.botaoText}>Aluno Offline</Text>
                     </TouchableOpacity>
                 </Link>
 
-                <Link href="../homeP" asChild>
+                <Link href="../jogo" asChild>
                     <TouchableOpacity style={styles.Botoes}>
-                        <Text style={styles.botaoText}>teste 2</Text>
+                        <Text style={styles.botaoText}>Professor Offline</Text>
                     </TouchableOpacity>
                 </Link>
+
+                
             </View>
 
 
@@ -55,7 +57,7 @@ export default function Home() {
 const styles = StyleSheet.create({
     safeArea: {
         flex: 1,
-        backgroundColor: '#000428',
+
     },
     container: {
         flex: 1,
@@ -66,9 +68,10 @@ const styles = StyleSheet.create({
     title: {
         fontSize: width * 0.1, 
         fontWeight: 'bold',
-        color: '#6495ED',
+        color: 'white',
         marginVertical: height * 0.02, 
         textAlign: 'center',
+        bottom: 40,
     },
     Botoes: {
         backgroundColor: '#6495ED',
@@ -83,7 +86,7 @@ const styles = StyleSheet.create({
         fontSize: width * 0.045, 
         fontWeight: 'bold',
     },
-    imagemlogo: {
+    nome: {
         width: 1000, 
         height: width * 0.5, 
         resizeMode: 'contain',
@@ -93,10 +96,11 @@ const styles = StyleSheet.create({
         top: 0,
         left: 0,
         right: 0,
-        height: '55%',
+        height: '60%',
     },
-    waveBackground: {
+    ondaBackground: {
         width: '100%',
         height: '100%',
     },
+
 });
